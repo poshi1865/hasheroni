@@ -102,6 +102,9 @@ impl<K: Hash+Display+PartialEq, V: Display+Clone> Hasheroni<K, V> {
                         initial_index = initial_index % CAPACITY;
                     }
                 } 
+                // There is probably a bug on returning None here.
+                // If an element has been removed, then a cell in the middle will have none
+                // If we stop linear probing on that, then we miss the element.
                 None => return None,
             }
         }
