@@ -208,6 +208,7 @@ mod tests {
         hm.insert(9, "Nine".to_string());
 
         assert_eq!(hm.get(10), Some("Ten".to_string()));
+
         assert_eq!(hm.remove(10), Ok(()));
         assert_eq!(hm.remove(10), Err("Key does not exist.".to_string()));
 
@@ -229,6 +230,27 @@ mod tests {
         assert_eq!(hm.get(76), None);
 
         assert_eq!(hm.remove(101), Ok(()));
+        assert_eq!(hm.remove(101), Err("Key does not exist.".to_string()));
+
+        assert_eq!(hm.size(), 2);
+    }
+
+    fn test_find_after_remove() {
+        let vector: Vec<(u32, String)> = vec![
+            (101, String::from("Nice")),
+            (2, String::from("Plants")),
+            (7, String::from("Guitar"))
+        ];
+        let mut hm: Hasheroni<u32, String> = Hasheroni::from(vector);
+
+        assert_eq!(hm.get(101), Some("Nice".to_string()));
+        assert_eq!(hm.get(2), Some("Plants".to_string()));
+
+        assert_eq!(hm.remove(101), Ok(()));
+
+        assert_eq!(hm.get(7), Some("Guitar".to_string()));
+        assert_eq!(hm.get(76), None);
+
         assert_eq!(hm.remove(101), Err("Key does not exist.".to_string()));
 
         assert_eq!(hm.size(), 2);
