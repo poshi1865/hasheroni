@@ -15,11 +15,6 @@
 // Implement closed addressing.
 // Implement my own hash function.
 
-// Steps
-// First define a hash function
-
-// When a hashmap is init, we initialize an array with CAPACITY
-
 #![allow(dead_code)]
 
 use std::hash::{DefaultHasher, Hash, Hasher};
